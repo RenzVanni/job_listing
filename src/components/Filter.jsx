@@ -1,36 +1,31 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
-function Filter() {
+function Filter({ tools, clearTools }) {
+  const [inFilter, setInFilter] = useState(tools);
+  console.log(inFilter, "filters");
+
+  useEffect(() => {
+    setInFilter(tools);
+  }, [tools]);
+
   return (
     <div className="filter_container">
       <ul>
-        <li>
-          <div>
-            <p>Frontend</p>
-          </div>
-          <button>
-            <img src="../../public/images/icon-remove.svg" alt="" />
-          </button>
-        </li>
-        <li>
-          <div>
-            <p>CSS</p>
-          </div>
-          <button>
-            <img src="../../public/images/icon-remove.svg" alt="" />
-          </button>
-        </li>
-        <li>
-          <div>
-            <p>JavaScript</p>
-          </div>
-          <button>
-            <img src="../../public/images/icon-remove.svg" alt="" />
-          </button>
-        </li>
+        {inFilter.map((toolFilter) => {
+          return (
+            <li key={toolFilter}>
+              <div>
+                <p>{toolFilter}</p>
+              </div>
+              <button>
+                <img src="../../public/images/icon-remove.svg" alt="" />
+              </button>
+            </li>
+          );
+        })}
       </ul>
 
-      <button>Clear</button>
+      <button onClick={clearTools}>Clear</button>
     </div>
   );
 }

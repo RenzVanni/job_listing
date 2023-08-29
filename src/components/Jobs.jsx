@@ -1,13 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import data from "../data.json";
 import Filter from "./Filter";
 
 function Jobs() {
   const [jobs, setJobs] = useState(data);
+  const [tools, setTools] = useState([]);
+
+  const onTools = (e) => {
+    // console.log(e.target.textContent);
+    const toolValue = e.target.textContent;
+    setTools((prev) => {
+      if (prev.includes(toolValue)) {
+        return prev;
+      }
+      return [...prev, toolValue];
+    });
+    console.log(tools);
+  };
+
+  const clearTools = () => {
+    setTools([]);
+  };
 
   return (
     <>
-      <Filter />
+      {tools.length <= 0 || <Filter tools={tools} clearTools={clearTools} />}
       {jobs.map((jobs) => (
         <div
           className="job_container"
@@ -49,10 +66,18 @@ function Jobs() {
 
           <ul>
             {jobs.languages.map((lang) => {
-              return <li key={lang}>{lang}</li>;
+              return (
+                <li key={lang} onClick={onTools} value={lang}>
+                  {lang}
+                </li>
+              );
             })}
             {jobs.tools.map((tools) => {
-              return <li key={tools}>{tools}</li>;
+              return (
+                <li key={tools} onClick={onTools} value={tools}>
+                  {tools}
+                </li>
+              );
             })}
           </ul>
         </div>
