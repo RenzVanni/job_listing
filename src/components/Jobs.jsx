@@ -7,7 +7,6 @@ function Jobs() {
   const [tools, setTools] = useState([]);
 
   const onTools = (e) => {
-    // console.log(e.target.textContent);
     const toolValue = e.target.textContent;
     setTools((prev) => {
       if (prev.includes(toolValue)) {
@@ -17,6 +16,20 @@ function Jobs() {
     });
     console.log(tools);
   };
+
+  useEffect(() => {
+    if (tools.length) {
+      setJobs(
+        data.filter(
+          (job) =>
+            job.languages.some((lang) => tools.includes(lang)) ||
+            job.tools.some((tool) => tools.includes(tool))
+        )
+      );
+    } else {
+      setJobs(data);
+    }
+  }, [tools]);
 
   const clearTools = () => {
     setTools([]);
