@@ -10,7 +10,7 @@ const [jobs, setJobs] = useState(data);
 
 and use map to display all jobs in the state.
 
-In order to filter this jobs this is reaponsible for it.
+In order to filter this jobs this is reaponsible for it,
 
 ```javascript
 const onTools = (e) => {
@@ -23,6 +23,24 @@ const onTools = (e) => {
   });
   console.log(tools);
 };
+```
+
+if the value of tools match to the jobs this this code will filter the jobs
+
+```javascript
+useEffect(() => {
+  if (tools.length) {
+    setJobs(
+      data.filter(
+        (job) =>
+          job.languages.some((lang) => tools.includes(lang)) ||
+          job.tools.some((tool) => tools.includes(tool))
+      )
+    );
+  } else {
+    setJobs(data);
+  }
+}, [tools]);
 ```
 
 The filtered jobs was stored in a state
