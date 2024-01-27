@@ -27,7 +27,7 @@ body {
 body::before {
   content: "";
   background-color: var(--primary-1);
-  background-image: url("../../../public/images/bg-header-mobile.svg");
+  background-image: url("/images/bg-header-mobile.svg");
   position: absolute;
   top: 0;
   left: 0;
@@ -35,7 +35,7 @@ body::before {
   height: 156px;
   z-index: -1;
   @media (min-width: 375px) {
-    background-image: url("../../../public/images/bg-header-desktop.svg");
+    background-image: url("/images/bg-header-desktop.svg");
     background-repeat: repeat-x;
   }
 }

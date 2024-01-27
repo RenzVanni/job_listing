@@ -18,7 +18,7 @@ function Filter({ tools, clearTools }) {
                 <p>{toolFilter}</p>
               </div>
               <button>
-                <img src="../../public/images/icon-remove.svg" alt="" />
+                <img src="/images/icon-remove.svg" alt="" />
               </button>
             </li>
           );
